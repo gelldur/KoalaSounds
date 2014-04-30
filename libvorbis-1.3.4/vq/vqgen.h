@@ -42,8 +42,8 @@ typedef struct vqgen
 	long   entries;
 	float* max;
 
-	float  ( *metric_func ) ( struct vqgen* v, float* entry, float* point );
-	float* ( *weight_func ) ( struct vqgen* v, float* point );
+	float( *metric_func )( struct vqgen* v, float* entry, float* point );
+	float* ( *weight_func )( struct vqgen* v, float* point );
 
 	FILE* asciipoints;
 } vqgen;
@@ -56,31 +56,31 @@ typedef struct
 	int    sequencep; /* bitflag */
 } quant_meta;
 
-static inline float* _point ( vqgen* v, long ptr )
+static inline float* _point( vqgen* v, long ptr )
 {
 	return v->pointlist + ( ( v->elements + v->aux ) * ptr );
 }
 
-static inline float* _aux ( vqgen* v, long ptr )
+static inline float* _aux( vqgen* v, long ptr )
 {
-	return _point ( v, ptr ) + v->aux;
+	return _point( v, ptr ) + v->aux;
 }
 
-static inline float* _now ( vqgen* v, long ptr )
+static inline float* _now( vqgen* v, long ptr )
 {
 	return v->entrylist + ( v->elements * ptr );
 }
 
-extern void vqgen_init ( vqgen* v,
-						 int elements, int aux, int entries, float mindist,
-						 float  ( *metric ) ( vqgen*, float*, float* ),
-						 float * ( *weight ) ( vqgen*, float* ), int centroid );
-extern void vqgen_addpoint ( vqgen* v, float* p, float* aux );
+extern void vqgen_init( vqgen* v,
+						int elements, int aux, int entries, float mindist,
+						float( *metric )( vqgen*, float*, float* ),
+						float * ( *weight )( vqgen*, float* ), int centroid );
+extern void vqgen_addpoint( vqgen* v, float* p, float* aux );
 
-extern float vqgen_iterate ( vqgen* v, int biasp );
-extern void vqgen_unquantize ( vqgen* v, quant_meta* q );
-extern void vqgen_quantize ( vqgen* v, quant_meta* q );
-extern void vqgen_cellmetric ( vqgen* v );
+extern float vqgen_iterate( vqgen* v, int biasp );
+extern void vqgen_unquantize( vqgen* v, quant_meta* q );
+extern void vqgen_quantize( vqgen* v, quant_meta* q );
+extern void vqgen_cellmetric( vqgen* v );
 
 #endif
 

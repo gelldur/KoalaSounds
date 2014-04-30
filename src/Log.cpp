@@ -48,9 +48,9 @@ const char* errorCodes[] =
 };
 
 
-const char* getErrorMessage ( int errorCode )
+const char* getErrorMessage( int errorCode )
 {
-	assert ( errorCode < sizeof ( errorCodes ) / sizeof ( *errorCodes ) );
+	assert( errorCode < sizeof( errorCodes ) / sizeof( *errorCodes ) );
 	return errorCodes[static_cast<int> ( errorCode )];
 }
 

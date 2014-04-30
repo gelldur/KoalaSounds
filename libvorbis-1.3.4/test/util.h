@@ -18,7 +18,7 @@
 #define ARRAY_LEN(x)   (sizeof(x)/sizeof(x[0]))
 
 /* Create simple test data consisting of a windowed sine wave. */
-void gen_windowed_sine ( float* data, int len, float maximum ) ;
+void gen_windowed_sine( float* data, int len, float maximum ) ;
 
 /* Set len values of data array to given value. */
-void set_data_in ( float* data, unsigned len, float value ) ;
+void set_data_in( float* data, unsigned len, float value ) ;

@@ -21,14 +21,14 @@ struct Sound
 public:
 	static Sound invalidSound()
 	{
-		return Sound ( 0, 0 );
+		return Sound( 0, 0 );
 	}
 
 private:
 
-	Sound ( int id, int position ) :
-		id ( id )
-		, position ( position )
+	Sound( int id, int position ) :
+		id( id )
+		, position( position )
 	{
 	}
 
@@ -44,7 +44,7 @@ class SoundPool
 public:
 	friend class BufferQueue;
 
-	SoundPool ( OpenSLEngine* pSLEngine );
+	SoundPool( OpenSLEngine* pSLEngine );
 
 	/**
 	 * This should be called only once
@@ -55,8 +55,8 @@ public:
 	 * @param bitrate
 	 * @return true if everything is ok, false otherwise
 	 */
-	bool init ( int maxStreams, SLuint32 samplingRate = SL_SAMPLINGRATE_44_1,
-				SLuint32 bitrate = SL_PCMSAMPLEFORMAT_FIXED_16 );
+	bool init( int maxStreams, SLuint32 samplingRate = SL_SAMPLINGRATE_44_1,
+			   SLuint32 bitrate = SL_PCMSAMPLEFORMAT_FIXED_16 );
 
 	void unloadStreams();
 	void unloadResources();
@@ -64,7 +64,7 @@ public:
 	~SoundPool();
 
 	//We want block them
-	SoundPool ( SoundPool const& ) = delete;
+	SoundPool( SoundPool const& ) = delete;
 	void operator= ( SoundPool const& ) = delete;
 
 	/**
@@ -75,7 +75,7 @@ public:
 	 * 			will be stopped if we don't have any free audio player.
 	 * @return stream id on which sound is played. 0 is returned if any error occurs.
 	 */
-	void play ( const Sound& sound, float volume, bool isLooped = false , int priority = 0 );
+	void play( const Sound& sound, float volume, bool isLooped = false , int priority = 0 );
 
 	/**
 	 * @param pBuffer
@@ -83,7 +83,7 @@ public:
 	 * @return sample id which is used to other actions on this sound pool. 0 is returned if any error occurs.
 	 * 			0 is invalid sample id and it won't be played
 	 */
-	Sound load ( char* pBuffer, int length );
+	Sound load( char* pBuffer, int length );
 
 	/**
 	 * @return maximum streams count. This can be different value that you pass in init method. Even 0!
@@ -93,9 +93,9 @@ public:
 		return m_bufferQueues.size();
 	}
 
-	void pauseSound ( const Sound& sound );
-	void resumeSound ( const Sound& sound );
-	void stopSound ( const Sound& sound );
+	void pauseSound( const Sound& sound );
+	void resumeSound( const Sound& sound );
+	void stopSound( const Sound& sound );
 
 	void pauseAllSounds();
 	void resumeAllSounds();
@@ -123,7 +123,7 @@ private:
 	// vector for samples
 	std::vector<ResourceBuffer*> m_samples;
 
-	SLresult initializeBufferQueueAudioPlayer ( int maxStreams );
+	SLresult initializeBufferQueueAudioPlayer( int maxStreams );
 };
 
 class ResourceBuffer
@@ -159,7 +159,7 @@ public:
 
 	SLresult realize();
 
-	static void playerCallback ( SLBufferQueueItf bufferQueue, void* pContext );
+	static void playerCallback( SLBufferQueueItf bufferQueue, void* pContext );
 };
 
 } /* namespace KoalaSound */

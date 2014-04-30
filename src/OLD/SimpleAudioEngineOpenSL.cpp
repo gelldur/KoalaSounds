@@ -31,34 +31,34 @@ bool SimpleAudioEngineOpenSL::initEngine()
 
 	do
 	{
-		if ( s_pOpenSL == NULL )
+		if( s_pOpenSL == NULL )
 		{
 			// clear the error stack
 			dlerror();
-			s_pHandle = dlopen ( LIBOPENSLES, RTLD_LAZY );
+			s_pHandle = dlopen( LIBOPENSLES, RTLD_LAZY );
 			const char* errorInfo = dlerror();
 
-			if ( errorInfo )
+			if( errorInfo )
 			{
-				LOGD ( "%s", errorInfo );
+				LOGD( "%s", errorInfo );
 				bRet = false;
 				break;
 			}
 
 			s_pOpenSL = new OpenSLEngine();
-			s_pOpenSL->createEngine ( s_pHandle );
+			s_pOpenSL->createEngine( s_pHandle );
 
 			bRet = true;
 		}
 	}
-	while ( 0 );
+	while( 0 );
 
 	return bRet;
 }
 
 SimpleAudioEngineOpenSL* SimpleAudioEngineOpenSL::sharedEngine()
 {
-	if ( s_pEngine == NULL )
+	if( s_pEngine == NULL )
 	{
 		s_pEngine = new SimpleAudioEngineOpenSL();
 	}
@@ -69,13 +69,13 @@ SimpleAudioEngineOpenSL* SimpleAudioEngineOpenSL::sharedEngine()
 
 void SimpleAudioEngineOpenSL::end()
 {
-	if ( s_pOpenSL )
+	if( s_pOpenSL )
 	{
 		s_pOpenSL->closeEngine();
 		delete s_pOpenSL;
 		s_pOpenSL = NULL;
 
-		dlclose ( s_pHandle );
+		dlclose( s_pHandle );
 		s_pHandle = NULL;
 	}
 }
@@ -85,34 +85,34 @@ float SimpleAudioEngineOpenSL::getEffectsVolume()
 	return s_pOpenSL->getEffectsVolume();
 }
 
-void SimpleAudioEngineOpenSL::setEffectsVolume ( float volume )
+void SimpleAudioEngineOpenSL::setEffectsVolume( float volume )
 {
-	if ( volume < 0.0f ) { volume = 0.0f; }
+	if( volume < 0.0f ) { volume = 0.0f; }
 
-	if ( volume > 1.0f ) { volume = 1.0f; }
+	if( volume > 1.0f ) { volume = 1.0f; }
 
-	s_pOpenSL->setEffectsVolume ( volume );
+	s_pOpenSL->setEffectsVolume( volume );
 }
 
-unsigned int SimpleAudioEngineOpenSL::playEffect ( const char* pszFilePath, bool bLoop )
+unsigned int SimpleAudioEngineOpenSL::playEffect( const char* pszFilePath, bool bLoop )
 {
-	unsigned int soundID = s_pOpenSL->preloadEffect ( pszFilePath );
+	unsigned int soundID = s_pOpenSL->preloadEffect( pszFilePath );
 
-	if ( soundID != FILE_NOT_FOUND )
+	if( soundID != FILE_NOT_FOUND )
 	{
-		if ( s_pOpenSL->getEffectState ( soundID ) == PLAYSTATE_PLAYING )
+		if( s_pOpenSL->getEffectState( soundID ) == PLAYSTATE_PLAYING )
 		{
 			// recreate an effect player
-			if ( s_pOpenSL->recreatePlayer ( pszFilePath ) )
+			if( s_pOpenSL->recreatePlayer( pszFilePath ) )
 			{
-				s_pOpenSL->setEffectLooping ( soundID, bLoop );
+				s_pOpenSL->setEffectLooping( soundID, bLoop );
 			}
 		}
 		else
 		{
-			s_pOpenSL->setEffectState ( soundID, PLAYSTATE_STOPPED );
-			s_pOpenSL->setEffectState ( soundID, PLAYSTATE_PLAYING );
-			s_pOpenSL->setEffectLooping ( soundID, bLoop );
+			s_pOpenSL->setEffectState( soundID, PLAYSTATE_STOPPED );
+			s_pOpenSL->setEffectState( soundID, PLAYSTATE_PLAYING );
+			s_pOpenSL->setEffectLooping( soundID, bLoop );
 		}
 
 	}
@@ -120,19 +120,19 @@ unsigned int SimpleAudioEngineOpenSL::playEffect ( const char* pszFilePath, bool
 	return soundID;
 }
 
-void SimpleAudioEngineOpenSL::pauseEffect ( unsigned int nSoundId )
+void SimpleAudioEngineOpenSL::pauseEffect( unsigned int nSoundId )
 {
-	s_pOpenSL->setEffectState ( nSoundId, PLAYSTATE_PAUSED );
+	s_pOpenSL->setEffectState( nSoundId, PLAYSTATE_PAUSED );
 }
 
 void SimpleAudioEngineOpenSL::pauseAllEffects()
 {
-	s_pOpenSL->setAllEffectState ( PLAYSTATE_PAUSED );
+	s_pOpenSL->setAllEffectState( PLAYSTATE_PAUSED );
 }
 
-void SimpleAudioEngineOpenSL::resumeEffect ( unsigned int nSoundId )
+void SimpleAudioEngineOpenSL::resumeEffect( unsigned int nSoundId )
 {
-	s_pOpenSL->resumeEffect ( nSoundId );
+	s_pOpenSL->resumeEffect( nSoundId );
 }
 
 void SimpleAudioEngineOpenSL::resumeAllEffects()
@@ -140,23 +140,23 @@ void SimpleAudioEngineOpenSL::resumeAllEffects()
 	s_pOpenSL->resumeAllEffects();
 }
 
-void SimpleAudioEngineOpenSL::stopEffect ( unsigned int nSoundId )
+void SimpleAudioEngineOpenSL::stopEffect( unsigned int nSoundId )
 {
-	s_pOpenSL->setEffectState ( nSoundId, PLAYSTATE_STOPPED, true );
+	s_pOpenSL->setEffectState( nSoundId, PLAYSTATE_STOPPED, true );
 }
 
 void SimpleAudioEngineOpenSL::stopAllEffects()
 {
-	s_pOpenSL->setAllEffectState ( PLAYSTATE_STOPPED );
+	s_pOpenSL->setAllEffectState( PLAYSTATE_STOPPED );
 }
 
-void SimpleAudioEngineOpenSL::preloadEffect ( const char* pszFilePath )
+void SimpleAudioEngineOpenSL::preloadEffect( const char* pszFilePath )
 {
-	s_pOpenSL->preloadEffect ( pszFilePath );
+	s_pOpenSL->preloadEffect( pszFilePath );
 }
 
-void SimpleAudioEngineOpenSL::unloadEffect ( const char* pszFilePath )
+void SimpleAudioEngineOpenSL::unloadEffect( const char* pszFilePath )
 {
-	s_pOpenSL->unloadEffect ( pszFilePath );
+	s_pOpenSL->unloadEffect( pszFilePath );
 }
 

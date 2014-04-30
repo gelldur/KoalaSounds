@@ -18,7 +18,7 @@ extern "C" {
 
 #pragma options align=power
 
-char* strdup ( const char* inStr );
+char* strdup( const char* inStr );
 
 #pragma options align=reset
 

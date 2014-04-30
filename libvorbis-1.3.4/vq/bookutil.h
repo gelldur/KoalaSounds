@@ -23,21 +23,21 @@
 
 #include "localcodebook.h"
 
-extern char*     get_line ( FILE* in );
-extern char*     setup_line ( FILE* in );
-extern int       get_line_value ( FILE* in, float* value );
-extern int       get_next_value ( FILE* in, float* value );
-extern int       get_next_ivalue ( FILE* in, long* ivalue );
-extern void      reset_next_value ( void );
-extern int       get_vector ( codebook* b, FILE* in, int start, int num, float* a );
-extern char*     find_seek_to ( FILE* in, char* s );
+extern char*     get_line( FILE* in );
+extern char*     setup_line( FILE* in );
+extern int       get_line_value( FILE* in, float* value );
+extern int       get_next_value( FILE* in, float* value );
+extern int       get_next_ivalue( FILE* in, long* ivalue );
+extern void      reset_next_value( void );
+extern int       get_vector( codebook* b, FILE* in, int start, int num, float* a );
+extern char*     find_seek_to( FILE* in, char* s );
 
-extern codebook* codebook_load ( char* filename );
-extern void write_codebook ( FILE* out, char* name, const static_codebook* c );
+extern codebook* codebook_load( char* filename );
+extern void write_codebook( FILE* out, char* name, const static_codebook* c );
 
-extern void spinnit ( char* s, int n );
-extern void build_tree_from_lengths ( int vals, long* hist, long* lengths );
-extern void build_tree_from_lengths0 ( int vals, long* hist, long* lengths );
+extern void spinnit( char* s, int n );
+extern void build_tree_from_lengths( int vals, long* hist, long* lengths );
+extern void build_tree_from_lengths0( int vals, long* hist, long* lengths );
 
 #endif
 

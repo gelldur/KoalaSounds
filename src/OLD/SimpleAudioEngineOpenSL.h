@@ -17,25 +17,25 @@ public:
 
 	float getEffectsVolume();
 
-	void setEffectsVolume ( float volume );
+	void setEffectsVolume( float volume );
 
-	unsigned int playEffect ( const char* pszFilePath, bool bLoop = false );
+	unsigned int playEffect( const char* pszFilePath, bool bLoop = false );
 
-	void pauseEffect ( unsigned int nSoundId );
+	void pauseEffect( unsigned int nSoundId );
 
 	void pauseAllEffects();
 
-	void resumeEffect ( unsigned int nSoundId );
+	void resumeEffect( unsigned int nSoundId );
 
 	void resumeAllEffects();
 
-	void stopEffect ( unsigned int nSoundId );
+	void stopEffect( unsigned int nSoundId );
 
 	void stopAllEffects();
 
-	void preloadEffect ( const char* pszFilePath );
+	void preloadEffect( const char* pszFilePath );
 
-	void unloadEffect ( const char* pszFilePath );
+	void unloadEffect( const char* pszFilePath );
 };
 
 

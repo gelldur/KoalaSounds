@@ -117,35 +117,35 @@ typedef struct
 
 } vorbis_look_psy;
 
-extern void   _vp_psy_init ( vorbis_look_psy* p, vorbis_info_psy* vi,
-							 vorbis_info_psy_global* gi, int n, long rate );
-extern void   _vp_psy_clear ( vorbis_look_psy* p );
-extern void*  _vi_psy_dup ( void* source );
+extern void   _vp_psy_init( vorbis_look_psy* p, vorbis_info_psy* vi,
+							vorbis_info_psy_global* gi, int n, long rate );
+extern void   _vp_psy_clear( vorbis_look_psy* p );
+extern void*  _vi_psy_dup( void* source );
 
-extern void   _vi_psy_free ( vorbis_info_psy* i );
-extern vorbis_info_psy* _vi_psy_copy ( vorbis_info_psy* i );
+extern void   _vi_psy_free( vorbis_info_psy* i );
+extern vorbis_info_psy* _vi_psy_copy( vorbis_info_psy* i );
 
-extern void _vp_noisemask ( vorbis_look_psy* p,
-							float* logmdct,
-							float* logmask );
+extern void _vp_noisemask( vorbis_look_psy* p,
+						   float* logmdct,
+						   float* logmask );
 
-extern void _vp_tonemask ( vorbis_look_psy* p,
-						   float* logfft,
-						   float* logmask,
-						   float global_specmax,
-						   float local_specmax );
+extern void _vp_tonemask( vorbis_look_psy* p,
+						  float* logfft,
+						  float* logmask,
+						  float global_specmax,
+						  float local_specmax );
 
-extern void _vp_offset_and_mix ( vorbis_look_psy* p,
-								 float* noise,
-								 float* tone,
-								 int offset_select,
-								 float* logmask,
-								 float* mdct,
-								 float* logmdct );
+extern void _vp_offset_and_mix( vorbis_look_psy* p,
+								float* noise,
+								float* tone,
+								int offset_select,
+								float* logmask,
+								float* mdct,
+								float* logmdct );
 
-extern float _vp_ampmax_decay ( float amp, vorbis_dsp_state* vd );
+extern float _vp_ampmax_decay( float amp, vorbis_dsp_state* vd );
 
-extern void _vp_couple_quantize_normalize ( int blobno,
+extern void _vp_couple_quantize_normalize( int blobno,
 		vorbis_info_psy_global* g,
 		vorbis_look_psy* p,
 		vorbis_info_mapping0* vi,

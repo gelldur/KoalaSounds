@@ -38,10 +38,10 @@ extern "C"
  */
 typedef struct
 {
-	size_t ( *read_func )  ( void* ptr, size_t size, size_t nmemb, void* datasource );
-	int    ( *seek_func )  ( void* datasource, ogg_int64_t offset, int whence );
-	int    ( *close_func ) ( void* datasource );
-	long   ( *tell_func )  ( void* datasource );
+	size_t ( *read_func )( void* ptr, size_t size, size_t nmemb, void* datasource );
+	int ( *seek_func )( void* datasource, ogg_int64_t offset, int whence );
+	int ( *close_func )( void* datasource );
+	long( *tell_func )( void* datasource );
 } ov_callbacks;
 
 #ifndef OV_EXCLUDE_STATIC_CALLBACKS
@@ -51,16 +51,16 @@ typedef struct
  * ov_open() to avoid problems with incompatible crt.o version linking
  * issues. */
 
-static int _ov_header_fseek_wrap ( FILE* f, ogg_int64_t off, int whence )
+static int _ov_header_fseek_wrap( FILE* f, ogg_int64_t off, int whence )
 {
-	if ( f == NULL ) { return ( -1 ); }
+	if( f == NULL ) { return ( -1 ); }
 
 #ifdef __MINGW32__
-	return fseeko64 ( f, off, whence );
+	return fseeko64( f, off, whence );
 #elif defined (_WIN32)
-	return _fseeki64 ( f, off, whence );
+	return _fseeki64( f, off, whence );
 #else
-	return fseek ( f, off, whence );
+	return fseek( f, off, whence );
 #endif
 }
 
@@ -76,34 +76,34 @@ static int _ov_header_fseek_wrap ( FILE* f, ogg_int64_t off, int whence )
 
 static ov_callbacks OV_CALLBACKS_DEFAULT =
 {
-	( size_t ( * ) ( void*, size_t, size_t, void* ) )  fread,
-	( int ( * ) ( void*, ogg_int64_t, int ) )           _ov_header_fseek_wrap,
-	( int ( * ) ( void* ) )                             fclose,
-	( long ( * ) ( void* ) )                            ftell
+	( size_t ( * )( void*, size_t, size_t, void* ) )  fread,
+	( int ( * )( void*, ogg_int64_t, int ) )           _ov_header_fseek_wrap,
+	( int ( * )( void* ) )                             fclose,
+	( long( * )( void* ) )                            ftell
 };
 
 static ov_callbacks OV_CALLBACKS_NOCLOSE =
 {
-	( size_t ( * ) ( void*, size_t, size_t, void* ) )  fread,
-	( int ( * ) ( void*, ogg_int64_t, int ) )           _ov_header_fseek_wrap,
-	( int ( * ) ( void* ) )                             NULL,
-	( long ( * ) ( void* ) )                            ftell
+	( size_t ( * )( void*, size_t, size_t, void* ) )  fread,
+	( int ( * )( void*, ogg_int64_t, int ) )           _ov_header_fseek_wrap,
+	( int ( * )( void* ) )                             NULL,
+	( long( * )( void* ) )                            ftell
 };
 
 static ov_callbacks OV_CALLBACKS_STREAMONLY =
 {
-	( size_t ( * ) ( void*, size_t, size_t, void* ) )  fread,
-	( int ( * ) ( void*, ogg_int64_t, int ) )           NULL,
-	( int ( * ) ( void* ) )                             fclose,
-	( long ( * ) ( void* ) )                            NULL
+	( size_t ( * )( void*, size_t, size_t, void* ) )  fread,
+	( int ( * )( void*, ogg_int64_t, int ) )           NULL,
+	( int ( * )( void* ) )                             fclose,
+	( long( * )( void* ) )                            NULL
 };
 
 static ov_callbacks OV_CALLBACKS_STREAMONLY_NOCLOSE =
 {
-	( size_t ( * ) ( void*, size_t, size_t, void* ) )  fread,
-	( int ( * ) ( void*, ogg_int64_t, int ) )           NULL,
-	( int ( * ) ( void* ) )                             NULL,
-	( long ( * ) ( void* ) )                            NULL
+	( size_t ( * )( void*, size_t, size_t, void* ) )  fread,
+	( int ( * )( void*, ogg_int64_t, int ) )           NULL,
+	( int ( * )( void* ) )                             NULL,
+	( long( * )( void* ) )                            NULL
 };
 
 #endif
@@ -153,58 +153,58 @@ typedef struct OggVorbis_File
 } OggVorbis_File;
 
 
-extern int ov_clear ( OggVorbis_File* vf );
-extern int ov_fopen ( const char* path, OggVorbis_File* vf );
-extern int ov_open ( FILE* f, OggVorbis_File* vf, const char* initial, long ibytes );
-extern int ov_open_callbacks ( void* datasource, OggVorbis_File* vf,
-							   const char* initial, long ibytes, ov_callbacks callbacks );
+extern int ov_clear( OggVorbis_File* vf );
+extern int ov_fopen( const char* path, OggVorbis_File* vf );
+extern int ov_open( FILE* f, OggVorbis_File* vf, const char* initial, long ibytes );
+extern int ov_open_callbacks( void* datasource, OggVorbis_File* vf,
+							  const char* initial, long ibytes, ov_callbacks callbacks );
 
-extern int ov_test ( FILE* f, OggVorbis_File* vf, const char* initial, long ibytes );
-extern int ov_test_callbacks ( void* datasource, OggVorbis_File* vf,
-							   const char* initial, long ibytes, ov_callbacks callbacks );
-extern int ov_test_open ( OggVorbis_File* vf );
+extern int ov_test( FILE* f, OggVorbis_File* vf, const char* initial, long ibytes );
+extern int ov_test_callbacks( void* datasource, OggVorbis_File* vf,
+							  const char* initial, long ibytes, ov_callbacks callbacks );
+extern int ov_test_open( OggVorbis_File* vf );
 
-extern long ov_bitrate ( OggVorbis_File* vf, int i );
-extern long ov_bitrate_instant ( OggVorbis_File* vf );
-extern long ov_streams ( OggVorbis_File* vf );
-extern long ov_seekable ( OggVorbis_File* vf );
-extern long ov_serialnumber ( OggVorbis_File* vf, int i );
+extern long ov_bitrate( OggVorbis_File* vf, int i );
+extern long ov_bitrate_instant( OggVorbis_File* vf );
+extern long ov_streams( OggVorbis_File* vf );
+extern long ov_seekable( OggVorbis_File* vf );
+extern long ov_serialnumber( OggVorbis_File* vf, int i );
 
-extern ogg_int64_t ov_raw_total ( OggVorbis_File* vf, int i );
-extern ogg_int64_t ov_pcm_total ( OggVorbis_File* vf, int i );
-extern double ov_time_total ( OggVorbis_File* vf, int i );
+extern ogg_int64_t ov_raw_total( OggVorbis_File* vf, int i );
+extern ogg_int64_t ov_pcm_total( OggVorbis_File* vf, int i );
+extern double ov_time_total( OggVorbis_File* vf, int i );
 
-extern int ov_raw_seek ( OggVorbis_File* vf, ogg_int64_t pos );
-extern int ov_pcm_seek ( OggVorbis_File* vf, ogg_int64_t pos );
-extern int ov_pcm_seek_page ( OggVorbis_File* vf, ogg_int64_t pos );
-extern int ov_time_seek ( OggVorbis_File* vf, double pos );
-extern int ov_time_seek_page ( OggVorbis_File* vf, double pos );
+extern int ov_raw_seek( OggVorbis_File* vf, ogg_int64_t pos );
+extern int ov_pcm_seek( OggVorbis_File* vf, ogg_int64_t pos );
+extern int ov_pcm_seek_page( OggVorbis_File* vf, ogg_int64_t pos );
+extern int ov_time_seek( OggVorbis_File* vf, double pos );
+extern int ov_time_seek_page( OggVorbis_File* vf, double pos );
 
-extern int ov_raw_seek_lap ( OggVorbis_File* vf, ogg_int64_t pos );
-extern int ov_pcm_seek_lap ( OggVorbis_File* vf, ogg_int64_t pos );
-extern int ov_pcm_seek_page_lap ( OggVorbis_File* vf, ogg_int64_t pos );
-extern int ov_time_seek_lap ( OggVorbis_File* vf, double pos );
-extern int ov_time_seek_page_lap ( OggVorbis_File* vf, double pos );
+extern int ov_raw_seek_lap( OggVorbis_File* vf, ogg_int64_t pos );
+extern int ov_pcm_seek_lap( OggVorbis_File* vf, ogg_int64_t pos );
+extern int ov_pcm_seek_page_lap( OggVorbis_File* vf, ogg_int64_t pos );
+extern int ov_time_seek_lap( OggVorbis_File* vf, double pos );
+extern int ov_time_seek_page_lap( OggVorbis_File* vf, double pos );
 
-extern ogg_int64_t ov_raw_tell ( OggVorbis_File* vf );
-extern ogg_int64_t ov_pcm_tell ( OggVorbis_File* vf );
-extern double ov_time_tell ( OggVorbis_File* vf );
+extern ogg_int64_t ov_raw_tell( OggVorbis_File* vf );
+extern ogg_int64_t ov_pcm_tell( OggVorbis_File* vf );
+extern double ov_time_tell( OggVorbis_File* vf );
 
-extern vorbis_info* ov_info ( OggVorbis_File* vf, int link );
-extern vorbis_comment* ov_comment ( OggVorbis_File* vf, int link );
+extern vorbis_info* ov_info( OggVorbis_File* vf, int link );
+extern vorbis_comment* ov_comment( OggVorbis_File* vf, int link );
 
-extern long ov_read_float ( OggVorbis_File* vf, float** *pcm_channels, int samples,
-							int* bitstream );
-extern long ov_read_filter ( OggVorbis_File* vf, char* buffer, int length,
-							 int bigendianp, int word, int sgned, int* bitstream,
-							 void ( *filter ) ( float** pcm, long channels, long samples, void* filter_param ),
-							 void* filter_param );
-extern long ov_read ( OggVorbis_File* vf, char* buffer, int length,
-					  int bigendianp, int word, int sgned, int* bitstream );
-extern int ov_crosslap ( OggVorbis_File* vf1, OggVorbis_File* vf2 );
+extern long ov_read_float( OggVorbis_File* vf, float** *pcm_channels, int samples,
+						   int* bitstream );
+extern long ov_read_filter( OggVorbis_File* vf, char* buffer, int length,
+							int bigendianp, int word, int sgned, int* bitstream,
+							void ( *filter )( float** pcm, long channels, long samples, void* filter_param ),
+							void* filter_param );
+extern long ov_read( OggVorbis_File* vf, char* buffer, int length,
+					 int bigendianp, int word, int sgned, int* bitstream );
+extern int ov_crosslap( OggVorbis_File* vf1, OggVorbis_File* vf2 );
 
-extern int ov_halfrate ( OggVorbis_File* vf, int flag );
-extern int ov_halfrate_p ( OggVorbis_File* vf );
+extern int ov_halfrate( OggVorbis_File* vf, int flag );
+extern int ov_halfrate_p( OggVorbis_File* vf );
 
 #ifdef __cplusplus
 }

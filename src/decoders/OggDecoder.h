@@ -29,10 +29,10 @@ namespace KoalaSound
 struct Data
 {
 	Data() :
-		pData ( nullptr )
-		, size ( 0 )
-		, channelsCount ( 0 )
-		, bitrate ( 0 )
+		pData( nullptr )
+		, size( 0 )
+		, channelsCount( 0 )
+		, bitrate( 0 )
 	{
 	}
 	/**
@@ -67,7 +67,7 @@ public:
 	 * @param size size of the buffer ( ogg file size)
 	 * @return decoded ogg as PCM in simple structure. If any error occurs empty Data structure is returned (Data::pData i nullptr , Data::size == 0...)
 	 */
-	Data decode ( const char* pData, size_t size );
+	Data decode( const char* pData, size_t size );
 
 private:
 	const int m_convertBufferSize;

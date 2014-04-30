@@ -52,10 +52,10 @@ typedef struct bitrate_manager_info
 
 } bitrate_manager_info;
 
-extern void vorbis_bitrate_init ( vorbis_info* vi, bitrate_manager_state* bs );
-extern void vorbis_bitrate_clear ( bitrate_manager_state* bs );
-extern int vorbis_bitrate_managed ( vorbis_block* vb );
-extern int vorbis_bitrate_addblock ( vorbis_block* vb );
-extern int vorbis_bitrate_flushpacket ( vorbis_dsp_state* vd, ogg_packet* op );
+extern void vorbis_bitrate_init( vorbis_info* vi, bitrate_manager_state* bs );
+extern void vorbis_bitrate_clear( bitrate_manager_state* bs );
+extern int vorbis_bitrate_managed( vorbis_block* vb );
+extern int vorbis_bitrate_addblock( vorbis_block* vb );
+extern int vorbis_bitrate_flushpacket( vorbis_dsp_state* vd, ogg_packet* op );
 
 #endif

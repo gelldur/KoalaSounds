@@ -19,7 +19,7 @@ class OpenSLEngine
 public:
 	inline static OpenSLEngine* getInstance()
 	{
-		if ( m_pInstance == nullptr )
+		if( m_pInstance == nullptr )
 		{
 			m_pInstance = new OpenSLEngine();
 		}
@@ -32,7 +32,7 @@ public:
 	~OpenSLEngine();
 
 	//We want block them
-	OpenSLEngine ( OpenSLEngine const& ) = delete;
+	OpenSLEngine( OpenSLEngine const& ) = delete;
 	void operator= ( OpenSLEngine const& ) = delete;
 
 	/**

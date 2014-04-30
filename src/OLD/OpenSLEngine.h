@@ -25,46 +25,46 @@ public:
 	OpenSLEngine();
 	~OpenSLEngine();
 
-	void createEngine ( void* pHandle );
+	void createEngine( void* pHandle );
 
 	void closeEngine();
 
 
-	bool preloadBackgroundMusic ( const char* filename );
+	bool preloadBackgroundMusic( const char* filename );
 
-	void setBackgroundMusicState ( int state );
+	void setBackgroundMusicState( int state );
 
 	int getBackgroundMusicState();
 
 	void rewindBackgroundMusic();
 
-	void setBackgroundMusicLooping ( bool isLooping );
+	void setBackgroundMusicLooping( bool isLooping );
 
-	void setBackgroundVolume ( int volume );
+	void setBackgroundVolume( int volume );
 
 	int getBackgroundVolume();
 
 
 
-	bool recreatePlayer ( const char* filename );
+	bool recreatePlayer( const char* filename );
 
-	unsigned int preloadEffect ( const char* filename );
+	unsigned int preloadEffect( const char* filename );
 
-	void unloadEffect ( const char* filename );
+	void unloadEffect( const char* filename );
 
-	int getEffectState ( unsigned int effectID );
+	int getEffectState( unsigned int effectID );
 
-	void setEffectState ( unsigned int effectID, int state, bool isClear = false );
+	void setEffectState( unsigned int effectID, int state, bool isClear = false );
 
-	void setAllEffectState ( int state );
+	void setAllEffectState( int state );
 
-	void resumeEffect ( unsigned int effectID );
+	void resumeEffect( unsigned int effectID );
 
 	void resumeAllEffects();
 
-	void setEffectLooping ( unsigned int effectID, bool isLooping );
+	void setEffectLooping( unsigned int effectID, bool isLooping );
 
-	void setEffectsVolume ( float volume );
+	void setEffectsVolume( float volume );
 
 	float getEffectsVolume();
 

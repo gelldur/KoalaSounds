@@ -73,11 +73,11 @@ typedef struct
 	long cursor;
 } envelope_lookup;
 
-extern void _ve_envelope_init ( envelope_lookup* e, vorbis_info* vi );
-extern void _ve_envelope_clear ( envelope_lookup* e );
-extern long _ve_envelope_search ( vorbis_dsp_state* v );
-extern void _ve_envelope_shift ( envelope_lookup* e, long shift );
-extern int  _ve_envelope_mark ( vorbis_dsp_state* v );
+extern void _ve_envelope_init( envelope_lookup* e, vorbis_info* vi );
+extern void _ve_envelope_clear( envelope_lookup* e );
+extern long _ve_envelope_search( vorbis_dsp_state* v );
+extern void _ve_envelope_shift( envelope_lookup* e, long shift );
+extern int  _ve_envelope_mark( vorbis_dsp_state* v );
 
 
 #endif

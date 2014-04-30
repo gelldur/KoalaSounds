@@ -134,8 +134,8 @@ typedef struct codec_setup_info
 	int         halfrate_flag; /* painless downsample for decode */
 } codec_setup_info;
 
-extern vorbis_look_psy_global* _vp_global_look ( vorbis_info* vi );
-extern void _vp_global_free ( vorbis_look_psy_global* look );
+extern vorbis_look_psy_global* _vp_global_look( vorbis_info* vi );
+extern void _vp_global_free( vorbis_look_psy_global* look );
 
 
 
@@ -160,13 +160,13 @@ typedef struct
 
 
 
-extern int* floor1_fit ( vorbis_block* vb, vorbis_look_floor1* look,
-						 const float* logmdct,   /* in */
-						 const float* logmask );
-extern int* floor1_interpolate_fit ( vorbis_block* vb, vorbis_look_floor1* look,
-									 int* A, int* B,
-									 int del );
-extern int floor1_encode ( oggpack_buffer* opb, vorbis_block* vb,
-						   vorbis_look_floor1* look,
-						   int* post, int* ilogmask );
+extern int* floor1_fit( vorbis_block* vb, vorbis_look_floor1* look,
+						const float* logmdct,   /* in */
+						const float* logmask );
+extern int* floor1_interpolate_fit( vorbis_block* vb, vorbis_look_floor1* look,
+									int* A, int* B,
+									int del );
+extern int floor1_encode( oggpack_buffer* opb, vorbis_block* vb,
+						  vorbis_look_floor1* look,
+						  int* post, int* ilogmask );
 #endif

@@ -19,6 +19,6 @@
 #endif
 
 
-const char* getErrorMessage ( int errorCode );
+const char* getErrorMessage( int errorCode );
 
 #endif /* LOG_H_KOALA_SOUND */

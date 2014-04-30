@@ -57,13 +57,13 @@ extern "C"
  * \retval OV_EINVAL  Invalid setup request, eg, out of range argument.
  * \retval OV_EIMPL   Unimplemented mode; unable to comply with bitrate request.
  */
-extern int vorbis_encode_init ( vorbis_info* vi,
-								long channels,
-								long rate,
+extern int vorbis_encode_init( vorbis_info* vi,
+							   long channels,
+							   long rate,
 
-								long max_bitrate,
-								long nominal_bitrate,
-								long min_bitrate );
+							   long max_bitrate,
+							   long nominal_bitrate,
+							   long min_bitrate );
 
 /**
  * This function performs step-one of a three-step bitrate-managed encode
@@ -94,13 +94,13 @@ extern int vorbis_encode_init ( vorbis_info* vi,
  * \retval OV_EINVAL   Invalid setup request, eg, out of range argument.
  * \retval OV_EIMPL    Unimplemented mode; unable to comply with bitrate request.
  */
-extern int vorbis_encode_setup_managed ( vorbis_info* vi,
-		long channels,
-		long rate,
+extern int vorbis_encode_setup_managed( vorbis_info* vi,
+										long channels,
+										long rate,
 
-		long max_bitrate,
-		long nominal_bitrate,
-		long min_bitrate );
+										long max_bitrate,
+										long nominal_bitrate,
+										long min_bitrate );
 
 /**
  * This function performs step-one of a three-step variable bitrate
@@ -126,12 +126,12 @@ extern int vorbis_encode_setup_managed ( vorbis_info* vi,
  * \retval  OV_EINVAL  Invalid setup request, eg, out of range argument.
  * \retval  OV_EIMPL   Unimplemented mode; unable to comply with quality level request.
  */
-extern int vorbis_encode_setup_vbr ( vorbis_info* vi,
-									 long channels,
-									 long rate,
+extern int vorbis_encode_setup_vbr( vorbis_info* vi,
+									long channels,
+									long rate,
 
-									 float quality
-								   );
+									float quality
+								  );
 
 /**
  * This is the primary function within libvorbisenc for setting up variable
@@ -155,12 +155,12 @@ extern int vorbis_encode_setup_vbr ( vorbis_info* vi,
  * \retval OV_EINVAL   Invalid setup request, eg, out of range argument.
  * \retval OV_EIMPL    Unimplemented mode; unable to comply with quality level request.
  */
-extern int vorbis_encode_init_vbr ( vorbis_info* vi,
-									long channels,
-									long rate,
+extern int vorbis_encode_init_vbr( vorbis_info* vi,
+								   long channels,
+								   long rate,
 
-									float base_quality
-								  );
+								   float base_quality
+								 );
 
 /**
  * This function performs the last stage of three-step encoding setup, as
@@ -189,7 +189,7 @@ extern int vorbis_encode_init_vbr ( vorbis_info* vi,
  * initialize the high-level encoding setup
  *
  */
-extern int vorbis_encode_setup_init ( vorbis_info* vi );
+extern int vorbis_encode_setup_init( vorbis_info* vi );
 
 /**
  * This function implements a generic interface to miscellaneous encoder
@@ -217,7 +217,7 @@ extern int vorbis_encode_setup_init ( vorbis_info* vi );
  *
  * \retval OV_EIMPL   Unimplemented or unknown request
  */
-extern int vorbis_encode_ctl ( vorbis_info* vi, int number, void* arg );
+extern int vorbis_encode_ctl( vorbis_info* vi, int number, void* arg );
 
 /**
  * \deprecated This is a deprecated interface. Please use vorbis_encode_ctl()

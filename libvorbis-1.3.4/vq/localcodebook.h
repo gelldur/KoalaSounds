@@ -82,41 +82,41 @@ typedef struct codebook
 
 } codebook;
 
-extern void vorbis_staticbook_clear ( static_codebook* b );
-extern void vorbis_staticbook_destroy ( static_codebook* b );
-extern int vorbis_book_init_encode ( codebook* dest, const static_codebook* source );
-extern int vorbis_book_init_decode ( codebook* dest, const static_codebook* source );
-extern void vorbis_book_clear ( codebook* b );
+extern void vorbis_staticbook_clear( static_codebook* b );
+extern void vorbis_staticbook_destroy( static_codebook* b );
+extern int vorbis_book_init_encode( codebook* dest, const static_codebook* source );
+extern int vorbis_book_init_decode( codebook* dest, const static_codebook* source );
+extern void vorbis_book_clear( codebook* b );
 
-extern float* _book_unquantize ( const static_codebook* b, int n, int* map );
-extern float* _book_logdist ( const static_codebook* b, float* vals );
-extern float _float32_unpack ( long val );
-extern long   _float32_pack ( float val );
-extern int  _best ( codebook* book, float* a, int step );
-extern int _ilog ( unsigned int v );
-extern long _book_maptype1_quantvals ( const static_codebook* b );
+extern float* _book_unquantize( const static_codebook* b, int n, int* map );
+extern float* _book_logdist( const static_codebook* b, float* vals );
+extern float _float32_unpack( long val );
+extern long   _float32_pack( float val );
+extern int  _best( codebook* book, float* a, int step );
+extern int _ilog( unsigned int v );
+extern long _book_maptype1_quantvals( const static_codebook* b );
 
-extern int vorbis_book_besterror ( codebook* book, float* a, int step, int addmul );
-extern long vorbis_book_codeword ( codebook* book, int entry );
-extern long vorbis_book_codelen ( codebook* book, int entry );
+extern int vorbis_book_besterror( codebook* book, float* a, int step, int addmul );
+extern long vorbis_book_codeword( codebook* book, int entry );
+extern long vorbis_book_codelen( codebook* book, int entry );
 
 
 
-extern int vorbis_staticbook_pack ( const static_codebook* c, oggpack_buffer* b );
-extern int vorbis_staticbook_unpack ( oggpack_buffer* b, static_codebook* c );
+extern int vorbis_staticbook_pack( const static_codebook* c, oggpack_buffer* b );
+extern int vorbis_staticbook_unpack( oggpack_buffer* b, static_codebook* c );
 
-extern int vorbis_book_encode ( codebook* book, int a, oggpack_buffer* b );
+extern int vorbis_book_encode( codebook* book, int a, oggpack_buffer* b );
 
-extern long vorbis_book_decode ( codebook* book, oggpack_buffer* b );
-extern long vorbis_book_decodevs_add ( codebook* book, float* a,
-									   oggpack_buffer* b, int n );
-extern long vorbis_book_decodev_set ( codebook* book, float* a,
+extern long vorbis_book_decode( codebook* book, oggpack_buffer* b );
+extern long vorbis_book_decodevs_add( codebook* book, float* a,
 									  oggpack_buffer* b, int n );
-extern long vorbis_book_decodev_add ( codebook* book, float* a,
+extern long vorbis_book_decodev_set( codebook* book, float* a,
+									 oggpack_buffer* b, int n );
+extern long vorbis_book_decodev_add( codebook* book, float* a,
+									 oggpack_buffer* b, int n );
+extern long vorbis_book_decodevv_add( codebook* book, float** a,
+									  long off, int ch,
 									  oggpack_buffer* b, int n );
-extern long vorbis_book_decodevv_add ( codebook* book, float** a,
-									   long off, int ch,
-									   oggpack_buffer* b, int n );
 
 
 
